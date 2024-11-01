@@ -3,5 +3,7 @@
 use Illuminate\Support\Facades\Route;  
 use App\Http\Controllers\ArticleController;  
 
-// Route for the articles resource  
-Route::resource('articles', ArticleController::class);
+Route::get('/', [ArticleController::class, 'index']);  
+
+// This route resource manages all the article routes  
+Route::resource('articles', ArticleController::class);  
