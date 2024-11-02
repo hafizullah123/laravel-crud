@@ -6,7 +6,7 @@
     <title>Articles</title>  
 </head>  
 <body>  
-    <h1>Articles</h1>  
+    <h1>Articles ({{ $articleCount }})</h1>  <!-- Display the article count here -->
     <a href="{{ route('articles.create') }}">Create New Article</a>  
     @if (session()->has('success'))  
         <p>{{ session()->get('success') }}</p>  

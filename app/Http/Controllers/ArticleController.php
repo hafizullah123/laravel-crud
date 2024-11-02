@@ -10,11 +10,45 @@ class ArticleController extends Controller
     /**  
      * Display a listing of the resource.  
      */  
-    public function index()  
-    {  
-        $articles = Article::all();  
-        return view('articles.index', compact('articles'));   
-    }  
+    public
+ 
+function
+ 
+index
+(
+)  
+
+{  
+    
+$articles
+ = 
+Article
+::
+all
+();  
+    
+$articleCount
+ = 
+$articles
+->
+count
+(); 
+// Count the number of articles
+
+    
+return
+ 
+view
+(
+'articles.index'
+, 
+compact
+(
+'articles'
+, 
+'articleCount'
+));   
+}
 
     /**  
      * Show the form for creating a new resource.  
