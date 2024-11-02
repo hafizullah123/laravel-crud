@@ -10,45 +10,21 @@ class ArticleController extends Controller
     /**  
      * Display a listing of the resource.  
      */  
-    public
- 
-function
- 
-index
-(
-)  
+    public function index(Request $request)  
+    {  
+        // Get the search query from the request
+        $search = $request->input('search');  
 
-{  
-    
-$articles
- = 
-Article
-::
-all
-();  
-    
-$articleCount
- = 
-$articles
-->
-count
-(); 
-// Count the number of articles
+        // Retrieve articles, applying the search filter if provided
+        $articles = Article::when($search, function($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%')
+                         ->orWhere('content', 'like', '%' . $search . '%');
+        })->get();  
 
-    
-return
- 
-view
-(
-'articles.index'
-, 
-compact
-(
-'articles'
-, 
-'articleCount'
-));   
-}
+        $articleCount = $articles->count(); // Count the number of articles
+
+        return view('articles.index', compact('articles', 'articleCount', 'search'));   
+    }
 
     /**  
      * Show the form for creating a new resource.  

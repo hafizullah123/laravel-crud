@@ -7,10 +7,17 @@
 </head>  
 <body>  
     <h1>Articles ({{ $articleCount }})</h1>  <!-- Display the article count here -->
+
+    <form action="{{ route('articles.index') }}" method="GET" style="margin-bottom: 20px;">
+        <input type="text" name="search" placeholder="Search articles..." value="{{ request()->input('search') }}">
+        <button type="submit">Search</button>
+    </form>
+
     <a href="{{ route('articles.create') }}">Create New Article</a>  
     @if (session()->has('success'))  
         <p>{{ session()->get('success') }}</p>  
     @endif  
+
     <ul>  
         @foreach ($articles as $article)  
             <li>  
